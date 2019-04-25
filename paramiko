@@ -1,0 +1,20 @@
+step 1: pip install paramiko
+
+step 2: pip install cryptography==2.4.2
+
+step 3:
+              import base64
+              import paramiko as pm
+              uname ="root"
+              pawd = 'password'
+              ip = "192.168.0.1"
+              cl = pm.SSHClient()
+              cl.set_missing_host_key_policy(pm.AutoAddPolicy())
+              cl.connect(hostname=ip,port=22,username=uname,password=pawd)
+              cmd ="/root/scripts/selfTest"
+              stdin,stdout,stderr = cl.exec_command(cmd)
+              stdout=stdout.read().decode('utf-8')
+              #stdout=stdout.read().decode('utf-8')
+              stderr=stderr.read().decode('utf-8')
+              print(stdout.split(),stderr)
+              
